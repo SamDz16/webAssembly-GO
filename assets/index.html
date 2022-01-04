@@ -8,31 +8,20 @@
 
 		<!-- In order to define the Go instance -->
 		<!-- GOROOT/misc/wasm/wasm_exec.js -->
-		<script src="wasm_exec.js"></script>
-
-		<script>
-			const go = new Go();
-			WebAssembly.instantiateStreaming(
-				fetch('hello.wasm'),
-				go.importObject
-			).then((result) => {
-				// console.log(result.instance.exports.add(4, 5));
-				go.run(result.instance);
-			});
-
-			// async function fetchAndInstantiate() {
-			// 	const response = await fetch('hello.wasm');
-			// 	const buffer = await response.arrayBuffer();
-			// 	const obj = await WebAssembly.instantiate(buffer);
-			// 	console.log(obj.instance);
-			// 	// console.log(obj.instance.exports);
-			// }
-
-			// fetchAndInstantiate();
-		</script>
 	</head>
 	<body>
-		<h1>First WebAssembly Program</h1>
+
+		<label for="str">Entrer votre chaine de caratère</label> <br>
+		<input type="text" id="str" placeholder="votre text" />
+		<button id="btn">Entrer</button>
+
+		<hr>
+	
+		<h2>En dessous, on affichera le text passé par WebAssembly en <strong>MAJUSCULE</strong></h2>
+		<p id="textCapitalized"></p>
 		<!-- <input type="text" value="" id="monText" /> -->
+
+		<script src="wasm_exec.js"></script>
+		<script src="wasm.js"></script>
 	</body>
 </html>
