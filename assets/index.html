@@ -7,19 +7,32 @@
 		<title>WebAssembly & GO</title>
 
 		<!-- In order to define the Go instance -->
+		<!-- GOROOT/misc/wasm/wasm_exec.js -->
 		<script src="wasm_exec.js"></script>
 
 		<script>
 			const go = new Go();
 			WebAssembly.instantiateStreaming(
-				fetch('main.wasm'),
+				fetch('hello.wasm'),
 				go.importObject
 			).then((result) => {
+				// console.log(result.instance.exports.add(4, 5));
 				go.run(result.instance);
 			});
+
+			// async function fetchAndInstantiate() {
+			// 	const response = await fetch('hello.wasm');
+			// 	const buffer = await response.arrayBuffer();
+			// 	const obj = await WebAssembly.instantiate(buffer);
+			// 	console.log(obj.instance);
+			// 	// console.log(obj.instance.exports);
+			// }
+
+			// fetchAndInstantiate();
 		</script>
 	</head>
 	<body>
 		<h1>First WebAssembly Program</h1>
+		<!-- <input type="text" value="" id="monText" /> -->
 	</body>
 </html>
